@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 4f;
+    [SerializeField] private float sprintSpeed = 6f;
     [SerializeField] private float JumpHeight = 0.6f;
     [SerializeField] private float gravity = -9.8f;
-    [SerializeField] private float mouseSensitivity = 200f;
-    [SerializeField] private float coyoteTime = 0.25f;
+    [SerializeField] private float mouseSensitivity = 1.5f;
+    [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private float jumpBufferTime = 0.1f;
     
     private float jumpVelocity;
@@ -66,8 +67,9 @@ public class PlayerController : MonoBehaviour {
         coyoteTimeLeft -= Time.deltaTime;
 
         // Handle horizontal movement. (Forwards, Backwards, Strafing)
-        velocity.x = Input.GetAxisRaw("Horizontal") * moveSpeed;
-        velocity.z = Input.GetAxisRaw("Vertical") * moveSpeed;
+        float currentSpeed = Input.GetButton("Fire3") ? sprintSpeed : moveSpeed;
+        velocity.x = Input.GetAxisRaw("Horizontal") * currentSpeed;
+        velocity.z = Input.GetAxisRaw("Vertical") * currentSpeed;
         
         // Use the character controller to move.
         controller.Move(transform.TransformVector(velocity) * Time.deltaTime);
