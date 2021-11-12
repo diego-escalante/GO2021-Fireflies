@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - test
   - Firefly
   layers:
   - Default
@@ -14,7 +13,7 @@ TagManager:
   - Water
   - UI
   - Fireflies
-  - 
+  - Player
   - 
   - 
   - 
