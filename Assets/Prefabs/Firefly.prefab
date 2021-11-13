@@ -120,6 +120,9 @@ MonoBehaviour:
   amplitudeMultiplier: 0.25
   frequencyMultiplier: 2
   moveRangeRecoveryTime: 1
+  solidLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!135 &8663325872633719230
 SphereCollider:
   m_ObjectHideFlags: 0

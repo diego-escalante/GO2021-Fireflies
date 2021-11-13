@@ -10,6 +10,7 @@ public class FireflyMovement : MonoBehaviour {
     [SerializeField] private float amplitudeMultiplier = 0.25f;
     [SerializeField] private float frequencyMultiplier = 2f;
     [SerializeField] private float moveRangeRecoveryTime = 1f;
+    [SerializeField] private LayerMask solidLayerMask;
     
     private Vector3[] noiseOffsets;
     private Vector3 origin;
@@ -17,6 +18,7 @@ public class FireflyMovement : MonoBehaviour {
     private float moveRangeRecoveryTimeLeft;
     private Vector3 currentMoveRange;
     private Transform container;
+    private Coroutine travelCo;
 
     private void Awake() {
         lightBehavior = GetComponent<FireflyLightBehavior>();
@@ -62,8 +64,45 @@ public class FireflyMovement : MonoBehaviour {
         }
         transform.position = newPos;
     }
+    
+    public void Send(Vector3 startingPoint, Vector3 forward, float distance, float speed) {
+        float radius = 0;
+        for (int i = 0; i < 3; i++) {
+            if (radius < moveRange[i]) {
+                radius = moveRange[i];
+            }
+        }
+        RaycastHit hit;
+        Vector3 target;
+        if (Physics.SphereCast(startingPoint, radius, forward, out hit, distance, solidLayerMask)) {
+            target = hit.point;
+        } else {
+            target = startingPoint + forward * distance;
+        }
+        
 
-    public void MoveTowards(Vector3 target, float speed) {
+        RemoveFromContainer(new Vector3(3,1,3));
+        if (travelCo != null) {
+            StopCoroutine(travelCo);
+        }
+        travelCo = StartCoroutine(Travel(target, speed));
+    }
+
+    public IEnumerator Travel(Vector3 target, float speed) {
+        while (Vector3.Distance(transform.position, target) > 0.05f) {
+            MoveTowards(target, speed);
+            yield return null;
+        }
+    }
+
+    public void Suck(Vector3 target, float speed) {
+        if (travelCo != null) {
+            StopCoroutine(travelCo);
+        }
+        MoveTowards(target, speed);
+    }
+
+    private void MoveTowards(Vector3 target, float speed) {
         // Sets the origin to the current fly position and moves it closer to the target.
         origin = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
         lightBehavior.SetLitState(true);
@@ -73,6 +112,11 @@ public class FireflyMovement : MonoBehaviour {
 
     public void PutInContainer(Transform container, Vector3 moveRange) {
         this.container = container;
+        this.moveRange = moveRange;
+    }
+
+    public void RemoveFromContainer(Vector3 moveRange) {
+        container = null;
         this.moveRange = moveRange;
     }
 
