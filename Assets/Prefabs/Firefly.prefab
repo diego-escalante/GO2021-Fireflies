@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2047211067930933733}
   - component: {fileID: 8663325872633719230}
   - component: {fileID: 1152308898}
+  - component: {fileID: -4783885564799777738}
   m_Layer: 6
   m_Name: Firefly
   m_TagString: Firefly
@@ -122,7 +123,7 @@ MonoBehaviour:
   moveRangeRecoveryTime: 1
   solidLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!135 &8663325872633719230
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -198,3 +199,21 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!143 &-4783885564799777738
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047211067930933732}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 90
+  m_StepOffset: 0
+  m_SkinWidth: 0.05
+  m_MinMoveDistance: 0
+  m_Center: {x: 0, y: 0, z: 0}

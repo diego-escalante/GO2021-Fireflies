@@ -19,9 +19,12 @@ public class FireflyMovement : MonoBehaviour {
     private Vector3 currentMoveRange;
     private Transform container;
     private Coroutine travelCo;
+    private CharacterController controller;
 
     private void Awake() {
         lightBehavior = GetComponent<FireflyLightBehavior>();
+        controller = GetComponent<CharacterController>();
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fireflies"), LayerMask.NameToLayer("Fireflies"));
         
         origin = transform.position;
         currentMoveRange = moveRange;
@@ -62,7 +65,9 @@ public class FireflyMovement : MonoBehaviour {
             }
             newPos[d] += (accumulatedNoise / accumulatedAmplitudes - 0.5f) * currentMoveRange[d];
         }
-        transform.position = newPos;
+
+        controller.Move(newPos - transform.position);
+        // transform.position = newPos;
     }
     
     public void Send(Vector3 startingPoint, Vector3 forward, float distance, float speed) {
@@ -74,8 +79,8 @@ public class FireflyMovement : MonoBehaviour {
         }
         RaycastHit hit;
         Vector3 target;
-        if (Physics.SphereCast(startingPoint, radius, forward, out hit, distance, solidLayerMask)) {
-            target = hit.point;
+        if (Physics.Raycast(startingPoint, forward, out hit, distance, solidLayerMask)) {
+            target = startingPoint + forward * (hit.distance - 0.5f);
         } else {
             target = startingPoint + forward * distance;
         }
@@ -89,7 +94,7 @@ public class FireflyMovement : MonoBehaviour {
     }
 
     public IEnumerator Travel(Vector3 target, float speed) {
-        while (Vector3.Distance(transform.position, target) > 0.05f) {
+        while (Vector3.Distance(transform.position, target) > 0.1f) {
             MoveTowards(target, speed);
             yield return null;
         }
