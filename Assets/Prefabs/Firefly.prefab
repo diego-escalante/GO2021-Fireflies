@@ -102,7 +102,7 @@ MonoBehaviour:
   maxTimeLit: 2
   minTimeUnlit: 2
   maxTimeUnlit: 5
-  transitionTime: 0.5
+  transitionTime: 0.25
 --- !u!114 &2047211067930933733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveRange: {x: 3, y: 2, z: 3}
-  moveBaseFrequency: {x: 0.5, y: 0.1, z: 0.5}
+  moveBaseFrequency: {x: 0.25, y: 0.1, z: 0.25}
   noiseOctaves: 2
   amplitudeMultiplier: 0.25
   frequencyMultiplier: 2
@@ -149,8 +149,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8000001, g: 1, b: 0, a: 1}
-  m_Intensity: 0.5
-  m_Range: 5
+  m_Intensity: 0.25
+  m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
