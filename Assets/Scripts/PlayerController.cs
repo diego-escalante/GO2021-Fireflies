@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour {
         // Unity's Character Controller has no concept of a LayerMask for its collision detection.
         // So we must do this instead.
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Fireflies"));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Nonsolid Fireflies"));
     }
     
     private void Update() {

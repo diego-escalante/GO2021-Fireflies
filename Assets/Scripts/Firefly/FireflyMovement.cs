@@ -24,7 +24,12 @@ public class FireflyMovement : MonoBehaviour {
     private void Awake() {
         lightBehavior = GetComponent<FireflyLightBehavior>();
         controller = GetComponent<CharacterController>();
+        
+        //TODO: This is more suitable in a gamecontroller, which can call this once instead of for each fly.
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fireflies"), LayerMask.NameToLayer("Fireflies"));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Nonsolid Fireflies"), LayerMask.NameToLayer("Nonsolid Fireflies"));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fireflies"), LayerMask.NameToLayer("Nonsolid Fireflies"));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Nonsolid Fireflies"), LayerMask.NameToLayer("Solid"));
         
         origin = transform.position;
         currentMoveRange = moveRange;
@@ -118,11 +123,13 @@ public class FireflyMovement : MonoBehaviour {
     public void PutInContainer(Transform container, Vector3 moveRange) {
         this.container = container;
         this.moveRange = moveRange;
+        gameObject.layer = LayerMask.NameToLayer("Nonsolid Fireflies");
     }
 
     public void RemoveFromContainer(Vector3 moveRange) {
         container = null;
         this.moveRange = moveRange;
+        gameObject.layer = LayerMask.NameToLayer("Fireflies");
     }
 
     public bool IsInContainer() {
