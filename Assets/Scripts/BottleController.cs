@@ -93,4 +93,8 @@ public class BottleController : MonoBehaviour {
         Vector3 boxHalfExtents = new Vector3(coneBaseRadius, coneBaseRadius, Vector3.Distance(boxCenter, coneBaseCenter.position));
         return Physics.OverlapBox(boxCenter, boxHalfExtents, Quaternion.LookRotation(coneApex.position - coneBaseCenter.position), fliesLayer);
     }
-}
+
+    public int GetNumberOfFliesInBottle() {
+        return fliesInBottle.Count;
+    }
+ }

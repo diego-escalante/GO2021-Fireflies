@@ -17,15 +17,13 @@ public class PlayerController : MonoBehaviour {
     private Transform camTrans;
     private float xRotation;
     private float coyoteTimeLeft;
-    private float jumpBufferTimeLeft;
+    private float jumpBufferTimeLeft = -1;
     
     private void Awake() {
         controller = GetComponent<CharacterController>();
         camTrans = transform.Find("Main Camera");
         jumpVelocity = Mathf.Sqrt(-2 * gravity * JumpHeight);
 
-        Cursor.lockState = CursorLockMode.Locked;
-        
         // Unity's Character Controller has no concept of a LayerMask for its collision detection.
         // So we must do this instead.
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Fireflies"));
