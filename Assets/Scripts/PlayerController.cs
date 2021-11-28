@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     
     private void Awake() {
         controller = GetComponent<CharacterController>();
-        camTrans = transform.Find("Main Camera");
+        camTrans = transform.Find("CameraTripod");
         jumpVelocity = Mathf.Sqrt(-2 * gravity * JumpHeight);
 
         // Unity's Character Controller has no concept of a LayerMask for its collision detection.
@@ -70,11 +70,19 @@ public class PlayerController : MonoBehaviour {
         coyoteTimeLeft -= Time.deltaTime;
 
         // Handle horizontal movement. (Forwards, Backwards, Strafing)
-        float currentSpeed = Input.GetButton("Fire3") ? sprintSpeed : moveSpeed;
+        float currentSpeed = /*Input.GetButton("Fire3") ? sprintSpeed :*/ moveSpeed;
         velocity.x = Input.GetAxisRaw("Horizontal") * currentSpeed;
         velocity.z = Input.GetAxisRaw("Vertical") * currentSpeed;
         
         // Use the character controller to move.
         controller.Move(transform.TransformVector(velocity) * Time.deltaTime);
+    }
+
+    public bool IsMoving() {
+        return velocity.x != 0 || velocity.z != 0;
+    }
+
+    public bool IsGrounded() {
+        return controller.isGrounded;
     }
 }

@@ -82,6 +82,7 @@ public class TextDisplayer : MonoBehaviour {
         
         // Tell the player it can press Escape.
         StartCoroutine(FadeInText(fadeTime, "Press 'P' at any time to\npause the game."));
+        GameObject.FindWithTag("GameController").GetComponent<Pauser>().enabled = true;
         yield return new WaitForSeconds(fadeTime * 2);
         StartCoroutine(FadeOutText(fadeTime));
     }

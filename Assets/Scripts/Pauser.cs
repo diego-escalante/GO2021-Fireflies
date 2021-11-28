@@ -12,25 +12,16 @@ public class Pauser : MonoBehaviour {
     private GameObject pauseUI;
     private GameObject activeUI;
 
-    private void Start() {
+    private void Awake() {
         pauseUI = GameObject.FindWithTag("UI").transform.Find("Pause").gameObject;
         activeUI = GameObject.FindWithTag("UI").transform.Find("Active").gameObject;
         pauseUI.SetActive(false);
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         pixelateImageEffect = GameObject.FindWithTag("MainCamera").GetComponent<PixelateImageEffect>();
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    private void OnEnable() {
-        EventManager.StartListening(EventManager.Event.ClickStart, Unpause);
-    }
-
-    private void OnDisable() {
-        EventManager.StopListening(EventManager.Event.ClickStart, Unpause);
     }
 
     private void OnApplicationFocus(bool hasFocus) {
-        if (!isPaused && !hasFocus) {
+        if (enabled && !isPaused && !hasFocus) {
             Pause();
         }
     }

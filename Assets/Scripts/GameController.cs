@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
     private void Start() {
+        Cursor.lockState = CursorLockMode.Locked;
         EventManager.TriggerEvent(EventManager.Event.StartGame);
     }
 }
