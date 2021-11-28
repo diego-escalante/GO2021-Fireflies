@@ -2580,7 +2580,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Click or press 'P' to Resume
+  m_text: Click or press 'P' to resume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 570674f624371714c95aa82a9b99e738, type: 2}
   m_sharedMaterial: {fileID: 2462154350765548030, guid: 570674f624371714c95aa82a9b99e738, type: 2}
@@ -3176,6 +3176,7 @@ GameObject:
   - component: {fileID: 963194232}
   - component: {fileID: 963194230}
   - component: {fileID: 963194231}
+  - component: {fileID: 963194233}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3388,6 +3389,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f900b9e3f3d90cd4f8252bcff34639cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &963194233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362bbe1c32014814b8890dfd68acda5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footsteps:
+  - {fileID: 8300000, guid: 264796b1650774349bbebc3fce5248ec, type: 3}
+  - {fileID: 8300000, guid: b559d2479ccdb804c830f5be8555f22e, type: 3}
+  - {fileID: 8300000, guid: 509d7c67c18ed3246a661cecab396e3f, type: 3}
+  - {fileID: 8300000, guid: 4956c92795e87d347984632a28effb8a, type: 3}
+  - {fileID: 8300000, guid: 8714004755e2634428b8f93053a81a7c, type: 3}
+  - {fileID: 8300000, guid: 084a3a6d3b3d2d54bbd7e87a8f4597c4, type: 3}
+  - {fileID: 8300000, guid: 1166f1e5c13acfa498e4b81f2f399b17, type: 3}
+  - {fileID: 8300000, guid: 76d3234f268181f44bf9d1095da7952f, type: 3}
+  - {fileID: 8300000, guid: 8d569d8e9d62ded408fd699ee33a324b, type: 3}
+  - {fileID: 8300000, guid: cc0217a68f06198499018bcc8bc481bd, type: 3}
+  - {fileID: 8300000, guid: 027daee1a92f2cf4ebb0810d3d144972, type: 3}
+  - {fileID: 8300000, guid: 9b7fc87308a5bdb428c304f6163bb1bb, type: 3}
+  - {fileID: 8300000, guid: 0337bc1cc5467314a82cb7a1ac89b03b, type: 3}
+  - {fileID: 8300000, guid: 0520008c446ff4c4caa122d8bc70baab, type: 3}
+  - {fileID: 8300000, guid: 245e8544b2c067747b21ab831426a864, type: 3}
 --- !u!1001 &986205389
 PrefabInstance:
   m_ObjectHideFlags: 0
