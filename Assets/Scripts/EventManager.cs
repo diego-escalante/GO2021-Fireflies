@@ -58,6 +58,8 @@ public class EventManager : MonoBehaviour {
 
     public enum Event {
         StartGame,
-        ClickStart
+        ClickStart,
+        CaptureFly,
+        ReleaseFly
     }
 }

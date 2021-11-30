@@ -51,6 +51,7 @@ public class BottleController : MonoBehaviour {
         if (fliesInBottle.Count > 0 && releaseCooldown <= 0) {
             releaseCooldown = rateOfFire;
             fliesInBottle.Dequeue().GetComponent<FireflyMovement>().Send(transform.position, cameraTrans.forward, Vector3.Distance(transform.position, coneBaseCenter.position), suckSpeed / 2f);
+            EventManager.TriggerEvent(EventManager.Event.ReleaseFly);
         }
     }
 
@@ -66,6 +67,7 @@ public class BottleController : MonoBehaviour {
                 if (Vector3.Distance(transform.position, fly.transform.position) < 0.1f) {
                     fireflyMovement.PutInContainer(transform, new Vector3(0.175f, 0.2f, 0.175f));
                     fliesInBottle.Enqueue(fly);
+                    EventManager.TriggerEvent(EventManager.Event.CaptureFly);
                 } else {
                     fireflyMovement.Suck(transform.position, suckSpeed);
                 }
