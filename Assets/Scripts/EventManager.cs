@@ -60,6 +60,8 @@ public class EventManager : MonoBehaviour {
         StartGame,
         ClickStart,
         CaptureFly,
-        ReleaseFly
+        ReleaseFly,
+        LanternLit,
+        FireflyInLantern
     }
 }

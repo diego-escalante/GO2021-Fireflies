@@ -33,7 +33,7 @@ public class FootstepSounder : MonoBehaviour {
     }
     
     private void PlayReleaseFly() {
-        audioSource.PlayOneShot(releases[Random.Range(0, releases.Length)], 0.4f);
+        audioSource.PlayOneShot(releases[Random.Range(0, releases.Length)], 0.75f);
     }
     
 }
